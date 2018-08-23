@@ -1,2 +1,2 @@
-# throwback
+# Chronicle 
 A chrome extension
