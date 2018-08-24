@@ -1,3 +1,13 @@
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-119305601-3']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
 window.onload=function() {
 
   // setup settings button
@@ -27,7 +37,6 @@ window.onload=function() {
       document.getElementById("searchButton").addEventListener("click", function() {
         chrome.tabs.query({'active': true, 'currentWindow': true}, function(tabs) {
           var searchQuery = document.getElementById("searchQuery").value;
-          console.log(searchQuery);
           var currentURL = tabs[0].url;
           var currentDomain = getDomain(currentURL);
           if (currentDomain) { 
@@ -66,9 +75,6 @@ function searchHistory(domain, currentTabId, query = "") {
   } else {
     var searchQuery = domain + " " + query;
   }
-  console.log("search query: " + searchQuery);
-  console.log("currentTab: " + currentTabId);
-  console.log("dom: " + domain);
   
   // when maxResults is 0, it shows all search history
   chrome.history.search({text: searchQuery, startTime: 0, maxResults: 0}, function(results) {
